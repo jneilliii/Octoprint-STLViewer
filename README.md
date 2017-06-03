@@ -11,7 +11,12 @@ manually:
 ## Configuration
 
 ## TODO:
-* [ ] Filter file list pull-down for stl files only.
-* [ ] Sort file list pull-down.
-* [ ] Dynamically update when new files are uploaded.
+* [x] Filter file list pull-down for stl files only.
+* [x] Sort file list pull-down. (uneeded, sorting is handled by FilesViewModel)
+* [x] Dynamically update when new files are uploaded.
 * [x] Support Octoprint 1.3.x folders
+
+## Support My Efforts
+I programmed this plugin for fun and do my best effort to support those that have issues with it, please return the favor and support me.
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jneilliii)

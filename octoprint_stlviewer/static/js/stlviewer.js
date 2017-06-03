@@ -1,8 +1,9 @@
 $(function () {
 	function stlviewerViewModel(parameters) {
 		var self = this;
-
-		self.files = parameters[0].listHelper;
+		
+		self.filesViewModel = parameters[0];
+		self.files = ko.observableArray();
 		self.FileList = ko.observableArray();
 		self.RenderModes = ko.observableArray([{
 						name : 'render as smooth',
@@ -49,7 +50,8 @@ $(function () {
 		// already been initialized. It is especially guaranteed that this method gets called _after_ the settings
 		// have been retrieved from the OctoPrint backend and thus the SettingsViewModel been properly populated.
 		self.onBeforeBinding = function () {
-			self.FileList(_.filter(self.files.allItems, self.files.supportedFilters["model"]));
+			console.log(self.filesViewModel.listHelper.allItems);
+			self.FileList(_.filter(self.filesViewModel.listHelper.allItems, function(data) { return data["type"] == "model"; }));
 			self.viewer.setParameter('SceneUrl', '');
 			self.viewer.setParameter('InitRotationX', 20);
 			self.viewer.setParameter('InitRotationY', 20);
@@ -72,16 +74,16 @@ $(function () {
 		};
 
 		//append file list with newly updated stl file.
-		self.onEventUpload = function (file) {
-			if (file.file.substr(file.file.length - 3).toLowerCase() == "stl") {
-				self.FileList.push({
-					name : file.file
-				});
-			}
-		};
+		//self.onEventUpload = function (file) {
+		//	if (file.file.substr(file.file.length - 3).toLowerCase() == "stl") {
+		//		self.FileList.push({
+		//			name : file.file
+		//		});
+		//	}
+		//};
 
 		self.updateFileList = function () {
-			self.FileList(_.filter(self.files.allItems, self.files.supportedFilters["model"]));
+			self.FileList(_.filter(self.files, function(data) { return data["type"] == "model"; }));
 		};
 
 		self.resiveCanvas = function(){
@@ -98,7 +100,7 @@ $(function () {
 			// This is a list of dependencies to inject into the plugin, the order which you request here is the order
 			// in which the dependencies will be injected into your view model upon instantiation via the parameters
 			// argument
-			["gcodeFilesViewModel"],
+			["filesViewModel"],
 
 			// Finally, this is the list of all elements we want this view model to be bound to.
 			[("#tab_plugin_stlviewer")]

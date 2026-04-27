@@ -13,6 +13,9 @@ class stlviewer(octoprint.plugin.StartupPlugin,
 	def get_template_configs(self):
 		return []
 
+	def is_template_autoescaped(self):
+		return True
+
 	def get_assets(self):
 		return dict(
 			js=["js/stlviewer.js","js/jsc3d.js","js/jsc3d.touch.js"]

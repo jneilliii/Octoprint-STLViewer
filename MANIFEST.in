@@ -1,1 +1,4 @@
 include README.md
+recursive-include octoprint_stlviewer/templates *
+recursive-include octoprint_stlviewer/translations *
+recursive-include octoprint_stlviewer/static *

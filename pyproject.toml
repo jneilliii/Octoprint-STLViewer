@@ -1,0 +1,42 @@
+[build-system]
+requires = [
+    "setuptools>=68",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "STL-Viewer"
+version = "0.4.3"
+description = "A plugin to load stl files in viewer."
+authors = [
+    { name = "jneilliii", email = "jneilliii+octoprint@gmail.com" },
+]
+requires-python = ">=3.7,<4"
+dependencies = []
+dynamic = [
+    "license",
+]
+
+[project.entry-points."octoprint.plugin"]
+stlviewer = "octoprint_stlviewer"
+
+[project.urls]
+Homepage = "https://github.com/jneilliii/OctoPrint-STLViewer"
+
+[project.optional-dependencies]
+develop = [
+    "go-task-bin",
+]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = [
+    "octoprint_stlviewer",
+    "octoprint_stlviewer.*",
+]
